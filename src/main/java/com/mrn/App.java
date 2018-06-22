@@ -3,7 +3,7 @@ package com.mrn;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class App {
@@ -52,12 +52,42 @@ public class App {
         * query execution will result in each row of the SQL result being returned as a result of type Object[]
         * (or a result of type Object if there is only one column in the select list.) */
         // SQL query
-        Query query = entityManager.createNativeQuery("SELECT * FROM person WHERE AGE BETWEEN 20 AND 30", Person.class);
+//        Query query = entityManager.createNativeQuery("SELECT * FROM person WHERE AGE BETWEEN 20 AND 30", Person.class);
+//
+//        List<Person> personList = (List<Person>) query.getResultList();
+//
+//        for(Person p: personList)
+//            System.out.println(p);
 
-        List<Person> personList = (List<Person>) query.getResultList();
+        // ----------------------------------------------------------------//
 
-        for(Person p: personList)
+        // Query query = entityManager.createNamedQuery("person.getAll");
+
+        // or we can use TypedQuery
+        // Interface used to control the execution of typed queries.
+        TypedQuery<Person> typedQuery = entityManager.createNamedQuery("person.getAll", Person.class);
+
+        // getResultList(): Execute a SELECT query and return the query results as a typed List
+        List<Person> personList = typedQuery.getResultList();
+
+//        for(Person p : personList)
+//            System.out.println(p);
+//
+//        // typed query for quering people bewtween some ages
+//        typedQuery = entityManager.createNamedQuery("person.betweenAges", Person.class);
+//
+//        // Execute a SELECT query and return the query results as a typed List
+//        personList = typedQuery.getResultList();
+//        for(Person p : personList)
+//            System.out.println(p);
+
+        typedQuery = entityManager.createNamedQuery("person.getPersonById", Person.class);
+        typedQuery.setParameter("id", 1);
+
+        personList = typedQuery.getResultList();
+        for(Person p : personList)
             System.out.println(p);
+
 
         // entityManager.getTransaction().commit();
 

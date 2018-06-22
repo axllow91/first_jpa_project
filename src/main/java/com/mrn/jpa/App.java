@@ -1,4 +1,4 @@
-package com.mrn;
+package com.mrn.jpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -73,7 +73,7 @@ public class App {
 //        for(Person p : personList)
 //            System.out.println(p);
 //
-//        // typed query for quering people bewtween some ages
+//        // typed query for querying people between some ages
 //        typedQuery = entityManager.createNamedQuery("person.betweenAges", Person.class);
 //
 //        // Execute a SELECT query and return the query results as a typed List
@@ -87,7 +87,6 @@ public class App {
         personList = typedQuery.getResultList();
         for(Person p : personList)
             System.out.println(p);
-
 
         // entityManager.getTransaction().commit();
 

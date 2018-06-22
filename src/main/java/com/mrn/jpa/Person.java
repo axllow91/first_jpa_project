@@ -1,4 +1,4 @@
-package com.mrn;
+package com.mrn.jpa;
 
 import javax.persistence.*;
 

@@ -1,27 +1,27 @@
 package com.mrn.inheritence;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 // this value will be passed in the vehicle by being a bus (b)
 // in the database table
-@DiscriminatorValue(value = "B")
+@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Bus extends Vehicle {
-    private int nrPasangers;
+    private int nrPasengers;
 
     public Bus() {}
 
-    public Bus(String name, int nrPasangers) {
+    public Bus(String name, int nrPasengers) {
         super(name);
-        this.nrPasangers = nrPasangers;
+        this.nrPasengers = nrPasengers;
     }
 
-    public int getNrPasangers() {
-        return nrPasangers;
+    public int getNrPasengers() {
+        return nrPasengers;
     }
 
-    public void setNrPasangers(int nrPasangers) {
-        this.nrPasangers = nrPasangers;
+    public void setNrPasengers(int nrPasangers) {
+        this.nrPasengers = nrPasangers;
     }
 }

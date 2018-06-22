@@ -2,19 +2,20 @@ package com.mrn.inheritence;
 
 import javax.persistence.*;
 
-// This example is not so efficient
-// because we will have a lot of null pointers
+// This strategy is very efficient because will have no problems with inefficient memory
+// we have no null variables
 @Entity
 @Table(name="VEHICLE")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
 public class Vehicle {
 
     // is protected because car will have a name, bus will have a name
-    protected String name;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    protected String name;
 
     public Vehicle() {}
 

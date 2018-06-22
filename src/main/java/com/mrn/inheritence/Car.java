@@ -1,10 +1,8 @@
 package com.mrn.inheritence;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(referencedColumnName = "id") // id from vehicle class
 public class Car extends Vehicle {
 
     private int speed;

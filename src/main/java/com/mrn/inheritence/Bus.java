@@ -1,12 +1,8 @@
 package com.mrn.inheritence;
 
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-// this value will be passed in the vehicle by being a bus (b)
-// in the database table
-@PrimaryKeyJoinColumn(referencedColumnName = "id")
 public class Bus extends Vehicle {
     private int nrPasengers;
 

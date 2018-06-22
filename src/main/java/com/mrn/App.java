@@ -3,6 +3,8 @@ package com.mrn;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import java.util.List;
 
 public class App {
     private static final String PERSISTENCE_UNIT = "StudentUnit";
@@ -41,8 +43,21 @@ public class App {
 //        entityManager.persist(p4);
 //        entityManager.persist(p5);
 
+         // JPQL query
+        // Query query = entityManager.createQuery("SELECT p FROM Person p ORDER BY p.age ASC");
 
+        /*
+        * Create an instance of Query for executing a native SQL statement, e.g., for update or delete.
+        * If the query is not an update or delete query,
+        * query execution will result in each row of the SQL result being returned as a result of type Object[]
+        * (or a result of type Object if there is only one column in the select list.) */
+        // SQL query
+        Query query = entityManager.createNativeQuery("SELECT * FROM person WHERE AGE BETWEEN 20 AND 30", Person.class);
 
+        List<Person> personList = (List<Person>) query.getResultList();
+
+        for(Person p: personList)
+            System.out.println(p);
 
         // entityManager.getTransaction().commit();
 

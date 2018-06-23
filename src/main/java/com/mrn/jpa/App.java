@@ -1,27 +1,38 @@
 package com.mrn.jpa;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 public class App {
     private static final String PERSISTENCE_UNIT = "StudentUnit";
 
     public static void main(String[] args) {
+
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         entityManager.getTransaction().begin();
 
- //       Student student = new Student("Mitica", 62, "Str Rozmarin, Nr. 17D");
-//        Person p1 = new Person("Kevin", "kevinat@gmail.com");
-//        Person p2 = new Person("Joe", "joeat@yahoo.com");
-//
-//        entityManager.persist(p1);
-//        entityManager.persist(p2);
+      Student student = new Student("Mitica", 62, "Str Rozmarin, Nr. 17D");
+        //Person p1 = new Person("Kevin", "kevinat@gmail.com");
+        //Person p2 = new Person("Joe", "joeat@yahoo.com");
+
+
+        entityManager.persist(student);
+
+        Session session = entityManager.unwrap(Session.class);
+        Transaction trans = session.getTransaction();
+        trans.begin();
+
+        session.save(student);
+
+        entityManager.unwrap(Session.class);
+        entityManager.getTransaction().commit();
 
         // Retrieving from db
 //        Person p = entityManager.find(Person.class, 1);
@@ -65,30 +76,28 @@ public class App {
 
         // or we can use TypedQuery
         // Interface used to control the execution of typed queries.
-        TypedQuery<Person> typedQuery = entityManager.createNamedQuery("person.getAll", Person.class);
-
-        // getResultList(): Execute a SELECT query and return the query results as a typed List
-        List<Person> personList = typedQuery.getResultList();
-
-//        for(Person p : personList)
-//            System.out.println(p);
+//        TypedQuery<Person> typedQuery = entityManager.createNamedQuery("person.getAll", Person.class);
 //
-//        // typed query for querying people between some ages
-//        typedQuery = entityManager.createNamedQuery("person.betweenAges", Person.class);
+//        // getResultList(): Execute a SELECT query and return the query results as a typed List
+//        List<Person> personList = typedQuery.getResultList();
 //
-//        // Execute a SELECT query and return the query results as a typed List
+////        for(Person p : personList)
+////            System.out.println(p);
+////
+////        // typed query for querying people between some ages
+////        typedQuery = entityManager.createNamedQuery("person.betweenAges", Person.class);
+////
+////        // Execute a SELECT query and return the query results as a typed List
+////        personList = typedQuery.getResultList();
+////        for(Person p : personList)
+////            System.out.println(p);
+//
+//        typedQuery = entityManager.createNamedQuery("person.getPersonById", Person.class);
+//        typedQuery.setParameter("id", 1);
+//
 //        personList = typedQuery.getResultList();
 //        for(Person p : personList)
 //            System.out.println(p);
-
-        typedQuery = entityManager.createNamedQuery("person.getPersonById", Person.class);
-        typedQuery.setParameter("id", 1);
-
-        personList = typedQuery.getResultList();
-        for(Person p : personList)
-            System.out.println(p);
-
-        // entityManager.getTransaction().commit();
 
         entityManager.close();
         entityManagerFactory.close();

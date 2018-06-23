@@ -1,5 +1,7 @@
 package com.mrn.jpa;
 
+import com.mrn.m.Bogdan;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Bogdan(name = "PETRE")
     private String name;
     private int age;
 

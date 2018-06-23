@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Vehicle {
 
-    // is protected because car will have a name, bus will have a name
+    // Is protected because car will have a name, bus will have a name
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;

@@ -8,10 +8,10 @@ import javax.persistence.*;
 @Table(name="PERSON")
 // we are naming the query: when we are calling this person.getAll then
 // the JPQL query will get executed
-// @NamedQuery(name="person.getAll", query="SELECT p FROM Person p")
-@NamedQueries({@NamedQuery(name="person.getAll", query="SELECT p FROM Person p"),
-               @NamedQuery(name="person.betweenAges", query="SELECT p FROM Person p WHERE p.age BETWEEN 15 AND 30"),
-               @NamedQuery(name="person.getPersonById", query="SELECT p FROM Person p WHERE p.id =: id")
+// @NamedQuery(name="person.getAll", query="SELECT p FROM StudentPerson p")
+@NamedQueries({@NamedQuery(name="person.getAll", query="SELECT p FROM StudentPerson p"),
+               @NamedQuery(name="person.betweenAges", query="SELECT p FROM StudentPerson p WHERE p.age BETWEEN 15 AND 30"),
+               @NamedQuery(name="person.getPersonById", query="SELECT p FROM StudentPerson p WHERE p.id =: id")
               })
 public class Person {
 
@@ -57,7 +57,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "StudentPerson{" +
                 "name='" + name + '\'' +
                 ", age='" + age + '\'' +
                 '}';

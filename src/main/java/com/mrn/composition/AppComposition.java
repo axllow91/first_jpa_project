@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class App {
+public class AppComposition {
     public static void main(String[] args) {
 
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("StudentUnit");
@@ -15,7 +15,7 @@ public class App {
         Address address = new Address("Str. Rozmarin", 1234);
 
         Employee emp1 = new Employee();
-        emp1.setEmployeeName("John Mitica");
+        emp1.setEmployeeName("John F");
         emp1.setAddress(address);
 
         entityManager.persist(emp1);

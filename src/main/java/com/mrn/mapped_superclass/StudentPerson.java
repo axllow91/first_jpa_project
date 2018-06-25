@@ -1,4 +1,4 @@
-package com.mrn.com.mrn.mapped;
+package com.mrn.mapped_superclass;
 
 import javax.persistence.*;
 

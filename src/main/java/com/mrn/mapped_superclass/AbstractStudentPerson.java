@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 public class AbstractStudentPerson {
 
     // this field will be appended to the child class
-    // because of the annotation @MappedSuperclass
+    // because of the @MappedSuper classannotation
     private String drivingLicense;
 
     public AbstractStudentPerson() {

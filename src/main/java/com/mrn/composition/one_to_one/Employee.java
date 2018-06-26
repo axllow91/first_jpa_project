@@ -1,4 +1,4 @@
-package com.mrn.composition;
+package com.mrn.composition.one_to_one;
 
 import javax.persistence.*;
 
